@@ -8,7 +8,7 @@ output "efs_replication_configurations_creation_time" {
 }
 output "efs_replication_configurations_destination" {
   description = "Map of destination values across all efs_replication_configurations, keyed the same as var.efs_replication_configurations"
-  value       = { for k, v in aws_efs_replication_configuration.efs_replication_configurations : k => v.destination if v.destination != null && length(v.destination) > 0 }
+  value       = { for k, v in aws_efs_replication_configuration.efs_replication_configurations : k => one(v.destination) if v.destination != null && length(v.destination) > 0 }
 }
 output "efs_replication_configurations_original_source_file_system_arn" {
   description = "Map of original_source_file_system_arn values across all efs_replication_configurations, keyed the same as var.efs_replication_configurations"
